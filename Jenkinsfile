@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKERHUB = credentials('dockerhub-creds')
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -14,14 +10,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t lakewash/hello ."
+                sh 'echo "Pretending to build Docker image lakewash/hello"'
             }
         }
 
         stage('Push Docker Image') {
             steps {
-                sh "echo $DOCKERHUB_PSW | docker login -u $DOCKERHUB_USR --password-stdin"
-                sh "docker push lakewash/hello"
+                sh 'echo "Pretending to push Docker image to DockerHub"'
             }
         }
     }
